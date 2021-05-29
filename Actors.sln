@@ -9,19 +9,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpActor", "HttpActor\Http
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleHttpServer", "SimpleHttpServer\SimpleHttpServer.csproj", "{2C89F08E-AE2B-4679-B252-2401A010A276}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorWithWait", "ActorWithWait\ActorWithWait.csproj", "{58DB79FA-FE62-4DDB-9476-46550D6D9C97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorWithWait", "ActorWithWait\ActorWithWait.csproj", "{58DB79FA-FE62-4DDB-9476-46550D6D9C97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorWithAsk", "ActorWithAsk\ActorWithAsk.csproj", "{6F2E1EAA-1F07-4D6B-9716-5EA843AB82DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorWithAsk", "ActorWithAsk\ActorWithAsk.csproj", "{6F2E1EAA-1F07-4D6B-9716-5EA843AB82DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorWithForward", "ActorWithForward\ActorWithForward.csproj", "{48FC414B-5C54-49F1-968E-12E224AE53E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorWithForward", "ActorWithForward\ActorWithForward.csproj", "{48FC414B-5C54-49F1-968E-12E224AE53E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsWithAskForwardWait", "ActorsWithAskForwardWait\ActorsWithAskForwardWait.csproj", "{9CE9C34D-C687-4B89-8EB3-9988F0497062}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorsWithAskForwardWait", "ActorsWithAskForwardWait\ActorsWithAskForwardWait.csproj", "{9CE9C34D-C687-4B89-8EB3-9988F0497062}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorWithException", "ActorWithException\ActorWithException.csproj", "{AAC54A67-C1BC-4889-9B31-B7A4301A1996}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorWithException", "ActorWithException\ActorWithException.csproj", "{AAC54A67-C1BC-4889-9B31-B7A4301A1996}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorWithRoundRobinPool", "ActorWithRoundRobinPool\ActorWithRoundRobinPool.csproj", "{9DFDA682-F257-4C5C-8E21-2D9891C2B875}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorWithRoundRobinPool", "ActorWithRoundRobinPool\ActorWithRoundRobinPool.csproj", "{9DFDA682-F257-4C5C-8E21-2D9891C2B875}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorWithRoundRobinException", "UntypedActor\ActorWithRoundRobinException.csproj", "{9894252C-2D1F-4407-81D4-CE0DA9F8486D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorWithRoundRobinException", "UntypedActor\ActorWithRoundRobinException.csproj", "{9894252C-2D1F-4407-81D4-CE0DA9F8486D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorWithStatus", "ActorWithStatus\ActorWithStatus.csproj", "{A856CDF1-B33F-4623-B0F1-C65C95B09DC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{9894252C-2D1F-4407-81D4-CE0DA9F8486D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9894252C-2D1F-4407-81D4-CE0DA9F8486D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9894252C-2D1F-4407-81D4-CE0DA9F8486D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A856CDF1-B33F-4623-B0F1-C65C95B09DC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A856CDF1-B33F-4623-B0F1-C65C95B09DC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A856CDF1-B33F-4623-B0F1-C65C95B09DC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A856CDF1-B33F-4623-B0F1-C65C95B09DC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
