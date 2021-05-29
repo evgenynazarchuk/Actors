@@ -9,21 +9,19 @@ namespace ActorWithException
         static void Main()
         {
             using var actorSystem = ActorSystem.Create($"{nameof(Program)}");
-            //var actor = actorSystem.ActorOf<ActorWithException>($"{nameof(ActorWithException)}");
-            var invoker = actorSystem.ActorOf<ActorWithForward>($"{nameof(ActorWithForward)}");
+            var strategy = new OneForOneStrategy(
+                maxNrOfRetries: 1,
+                withinTimeRange: TimeSpan.FromMinutes(1),
+                e => Directive.Stop);
 
-            //var invoker = actorSystem.ActorOf(
-            //    Props
-            //    .Create<ActorWithForward>(actor),
-            //    $"{nameof(ActorWithForward)}"
-            //    );
+            var actorProps = Props.Create<ActorWithForward>().WithSupervisorStrategy(strategy);
+            var actor = actorSystem.ActorOf(actorProps, $"{nameof(ActorWithForward)}");
 
-
-            for (int i = 0; i < 10; i++)
-            {
-                invoker.Tell("");
-                invoker.Tell("Evgeny");
-            }
+            actor.Tell("Evgeny");
+            actor.Tell("Evgeny");
+            actor.Tell("");
+            actor.Tell("Evgeny");
+            actor.Tell("Evgeny");
 
             Console.ReadKey();
         }
@@ -31,22 +29,20 @@ namespace ActorWithException
 
     class ActorWithForward : ReceiveActor
     {
-        public ActorWithForward(/*IActorRef target*/)
+        public ActorWithForward()
         {
+            var strategy = new OneForOneStrategy(
+                    maxNrOfRetries: 1,
+                    withinTimeRange: TimeSpan.FromMinutes(1),
+                    e => Directive.Stop);
+
+            var childProps = Props.Create<ActorWithException>().WithSupervisorStrategy(strategy);
+            var child = Context.ActorOf(childProps);
+
             Receive<string>(msg =>
             {
-                var child = Context.ActorOf<ActorWithException>();
                 child.Tell(msg);
-                //target.Tell(msg);
             });
-        }
-
-        protected override SupervisorStrategy SupervisorStrategy()
-        {
-            return new OneForOneStrategy(
-                maxNrOfRetries: 1,
-                withinTimeRange: TimeSpan.FromMinutes(1),
-                e => Directive.Stop);
         }
     }
 
@@ -64,13 +60,5 @@ namespace ActorWithException
                 Console.WriteLine($"Hello, {name}");
             });
         }
-
-        //protected override SupervisorStrategy SupervisorStrategy()
-        //{
-        //    return new OneForOneStrategy(
-        //        maxNrOfRetries: 1,
-        //        withinTimeRange: TimeSpan.FromMinutes(1),
-        //        e => Akka.Actor.SupervisorStrategy.DefaultStrategy.Decider.Decide(e));
-        //}
     }
 }
