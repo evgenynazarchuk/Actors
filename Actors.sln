@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleActor", "Actors\SimpleActor.csproj", "{6B9E16F4-59EC-4AB1-B4B5-574D48EE9521}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpActor", "HttpActor\HttpActor.csproj", "{9179F548-EA37-44F7-84B1-E1A527A6AAF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleHttpActor", "HttpActor\SimpleHttpActor.csproj", "{9179F548-EA37-44F7-84B1-E1A527A6AAF0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleHttpServer", "SimpleHttpServer\SimpleHttpServer.csproj", "{2C89F08E-AE2B-4679-B252-2401A010A276}"
 EndProject

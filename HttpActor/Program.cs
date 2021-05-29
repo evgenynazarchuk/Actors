@@ -3,6 +3,9 @@ using System;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HttpActor
 {
@@ -10,18 +13,26 @@ namespace HttpActor
     {
         static void Main()
         {
-            var request = new Uri("home/getContent", UriKind.Relative);
-            var httprequestMesage1 = new HttpRequestMessage() { RequestUri = request };
-            var httprequestMesage2 = new HttpRequestMessage() { RequestUri = request };
-            var httprequestMesage3 = new HttpRequestMessage() { RequestUri = request };
+            var httpResponseBuilder = new HttpRequestMessageBuilder();
+            httpResponseBuilder.UseRequest("home/getContent");
+
+            var httprequestMesage1 = httpResponseBuilder.Build();
+            var httprequestMesage2 = httpResponseBuilder.Build();
+            var httprequestMesage3 = httpResponseBuilder.Build();
 
             using var system = ActorSystem.Create("http-system");
-            var httpclient = system.ActorOf<HttpActor>("httpclient");
+            var httpActorProps = Props.Create<HttpActor>();
+            var httpActor = system.ActorOf(httpActorProps, "httpclient");
 
-            httpclient.Tell(httprequestMesage1);
-            httpclient.Tell(httprequestMesage2);
-            httpclient.Tell(httprequestMesage3);
+            var taskList = new List<Task<string>>()
+            {
+                httpActor.Ask<string>(httprequestMesage1),
+                httpActor.Ask<string>(httprequestMesage2),
+                httpActor.Ask<string>(httprequestMesage3)
+            };
+            Task.WaitAll(taskList.ToArray());
 
+            taskList.ForEach(task => Console.WriteLine(task.Result));
             Console.ReadKey();
         }
     }
@@ -34,11 +45,38 @@ namespace HttpActor
         {
             Receive<HttpRequestMessage>(message =>
             {
-                using var httpResponseMessage = HttpClient.Send(message);
-                using var stream = httpResponseMessage.Content.ReadAsStream();
-                string content = Encoding.UTF8.GetString((stream as MemoryStream).ToArray());
-                Console.WriteLine(content);
+                Task.Run(() =>
+                {
+                    using var httpResponseMessage = HttpClient.Send(message);
+                    using var stream = httpResponseMessage.Content.ReadAsStream();
+                    string content = Encoding.UTF8.GetString((stream as MemoryStream).ToArray());
+                    return content;
+                }).PipeTo(Sender);
             });
         }
     }
+
+    class HttpRequestMessageBuilder
+    {
+        public string RequestUri;
+
+        public HttpRequestMessageBuilder()
+        {
+        }
+
+        public HttpRequestMessageBuilder UseRequest(string requestUri)
+        {
+            RequestUri = requestUri;
+            return this;
+        }
+
+        public HttpRequestMessage Build()
+        {
+            return new HttpRequestMessage()
+            {
+                RequestUri = new Uri(this.RequestUri, UriKind.Relative)
+            };
+        }
+    }
+
 }
