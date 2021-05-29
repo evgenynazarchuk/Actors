@@ -8,8 +8,8 @@ namespace ActorWithWait
     {
         static void Main()
         {
-            var system = ActorSystem.Create($"{nameof(Program)}");
-            var actor = system.ActorOf<ActorWithWait>($"{nameof(ActorWithWait)}");
+            var actorSystem = ActorSystem.Create($"{nameof(Program)}");
+            var actor = actorSystem.ActorOf<ActorWithWait>($"{nameof(ActorWithWait)}");
 
             actor.Tell(new DoWork());
             actor.Tell(new DoWork());

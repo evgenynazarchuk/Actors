@@ -7,9 +7,9 @@ namespace ActorWithForward
     {
         static void Main()
         {
-            using var system = ActorSystem.Create($"{nameof(Program)}");
-            var targetActor = system.ActorOf<TargetActor>($"{nameof(TargetActor)}");
-            var forwardActor = system.ActorOf(Props.Create(typeof(ActorWithForward), targetActor), $"{nameof(ActorWithForward)}");
+            using var actorSystem = ActorSystem.Create($"{nameof(Program)}");
+            var targetActor = actorSystem.ActorOf<TargetActor>($"{nameof(TargetActor)}");
+            var forwardActor = actorSystem.ActorOf(Props.Create(typeof(ActorWithForward), targetActor), $"{nameof(ActorWithForward)}");
 
             var resultTask = forwardActor.Ask("Evgeny");
             var result = resultTask.GetAwaiter().GetResult();

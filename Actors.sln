@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Actors", "Actors\Actors.csproj", "{6B9E16F4-59EC-4AB1-B4B5-574D48EE9521}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleActor", "Actors\SimpleActor.csproj", "{6B9E16F4-59EC-4AB1-B4B5-574D48EE9521}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpActor", "HttpActor\HttpActor.csproj", "{9179F548-EA37-44F7-84B1-E1A527A6AAF0}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorWithForward", "ActorWithForward\ActorWithForward.csproj", "{48FC414B-5C54-49F1-968E-12E224AE53E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsWithAskForwardWait", "ActorsWithAskForwardWait\ActorsWithAskForwardWait.csproj", "{9CE9C34D-C687-4B89-8EB3-9988F0497062}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorWithException", "ActorWithException\ActorWithException.csproj", "{AAC54A67-C1BC-4889-9B31-B7A4301A1996}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{9CE9C34D-C687-4B89-8EB3-9988F0497062}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CE9C34D-C687-4B89-8EB3-9988F0497062}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CE9C34D-C687-4B89-8EB3-9988F0497062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAC54A67-C1BC-4889-9B31-B7A4301A1996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAC54A67-C1BC-4889-9B31-B7A4301A1996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAC54A67-C1BC-4889-9B31-B7A4301A1996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAC54A67-C1BC-4889-9B31-B7A4301A1996}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

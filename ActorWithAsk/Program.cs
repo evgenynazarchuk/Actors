@@ -7,8 +7,8 @@ namespace ActorWithAsk
     {
         static void Main()
         {
-            using var system = ActorSystem.Create($"{nameof(Program)}");
-            var actor = system.ActorOf<ActorWithAsk>($"{nameof(ActorWithAsk)}");
+            using var actorSystem = ActorSystem.Create($"{nameof(Program)}");
+            var actor = actorSystem.ActorOf<ActorWithAsk>($"{nameof(ActorWithAsk)}");
 
             var resultTask = actor.Ask<string>("Evgeny");
             var result = resultTask.GetAwaiter().GetResult();

@@ -36,12 +36,21 @@ namespace ActorsWithAskForwardWait
         {
             Receive<string>(msg =>
             {
-                Task.Factory.StartNew(new Action<object>((sender) =>
+                Task.Run(() =>
                 {
                     Task.Delay(1000).GetAwaiter().GetResult();
-                    (sender as IActorRef).Tell(msg);
-                }), Sender);
+                    return $"{msg}!";
+                }).PipeTo(Sender);
             });
+
+            //Receive<string>(msg =>
+            //{
+            //    Task.Factory.StartNew(new Action<object>((sender) =>
+            //    {
+            //        Task.Delay(1000).GetAwaiter().GetResult();
+            //        (sender as IActorRef).Tell($"{msg}!");
+            //    }), Sender);
+            //});
         }
     }
 }
