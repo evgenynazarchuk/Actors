@@ -36,7 +36,7 @@ namespace ActorWithException
                     e => Directive.Stop);
 
             var childProps = Props.Create<ActorWithException>().WithSupervisorStrategy(strategy);
-            var child = Context.ActorOf(childProps);
+            var child = Context.ActorOf(childProps, $"{nameof(ActorWithException)}");
 
             Receive<string>(msg =>
             {
