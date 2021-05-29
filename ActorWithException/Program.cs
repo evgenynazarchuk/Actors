@@ -8,6 +8,7 @@ namespace ActorWithException
         static void Main()
         {
             using var actorSystem = ActorSystem.Create($"{nameof(Program)}");
+
             var strategy = new OneForOneStrategy(
                 maxNrOfRetries: 1,
                 withinTimeRange: TimeSpan.FromMinutes(1),
