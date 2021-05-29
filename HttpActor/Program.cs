@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace HttpActor
 {
@@ -47,7 +46,7 @@ namespace HttpActor
             {
                 Task.Run(() =>
                 {
-                    using var httpResponseMessage = HttpClient.Send(message);
+                    using var httpResponseMessage = HttpClient.SendAsync(message).GetAwaiter().GetResult();
                     using var stream = httpResponseMessage.Content.ReadAsStream();
                     string content = Encoding.UTF8.GetString((stream as MemoryStream).ToArray());
                     return content;
@@ -59,7 +58,17 @@ namespace HttpActor
     class HttpRequestMessageBuilder
     {
         private string _requestUri;
-        private string _content = string.Empty; // Empty is required if content is null
+
+        // if content is null then throw exception
+        private string _content = string.Empty; 
+        private HttpMethod _httpMethod = HttpMethod.Get;
+
+        // If use 2.0 version, then throw exception
+        // If use 2.0 need use async method
+        private Version _version = new(2, 0); 
+
+        private HttpVersionPolicy _policy = HttpVersionPolicy.RequestVersionOrLower;
+        private Dictionary<string, IEnumerable<string>> _headers;
 
         public HttpRequestMessageBuilder()
         {
@@ -77,14 +86,60 @@ namespace HttpActor
             return this;
         }
 
+        public HttpRequestMessageBuilder UseHttpMethod(string method)
+        {
+            _httpMethod = new HttpMethod(method);
+            return this;
+        }
+
+        public HttpRequestMessageBuilder UseVersion(string version)
+        {
+            _version = new Version(version);
+            return this;
+        }
+
+        public HttpRequestMessageBuilder UseVersionPolicy(HttpVersionPolicy policy)
+        {
+            _policy = policy;
+            return this;
+        }
+
+        public HttpRequestMessageBuilder UseRequestHeaders(Dictionary<string, string> headers)
+        {
+            foreach ((var key, var value) in headers)
+            {
+                _headers.Add(key, new List<string> { value });
+            }
+
+            return this;
+        }
+
+        public HttpRequestMessageBuilder UseRequestHeaders(Dictionary<string, IEnumerable<string>> headers)
+        {
+            _headers = headers;
+            return this;
+        }
+
         public HttpRequestMessage Build()
         {
-            return new HttpRequestMessage()
+            var httpResponseMessage = new HttpRequestMessage()
             {
                 RequestUri = new Uri(this._requestUri, UriKind.Relative),
-                Content = new StringContent(_content)
+                Content = new StringContent(_content),
+                Method = _httpMethod,
+                Version = _version,
+                VersionPolicy = _policy
             };
+
+            if (_headers is not null)
+            {
+                foreach ((var key, var value) in _headers)
+                {
+                    httpResponseMessage.Headers.Add(key, value);
+                }
+            }
+
+            return httpResponseMessage;
         }
     }
-
 }
