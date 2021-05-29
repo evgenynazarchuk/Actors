@@ -1,11 +1,8 @@
-﻿using System;
-using Akka;
-using Akka.Actor;
-using System.Net;
-using System.Text;
-using System.Net.Http;
-using System.Linq;
+﻿using Akka.Actor;
+using System;
 using System.IO;
+using System.Net.Http;
+using System.Text;
 
 namespace HttpActor
 {

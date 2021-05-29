@@ -1,14 +1,15 @@
 ﻿using Akka.Actor;
 using System;
+using System.Threading.Tasks;
 
-namespace ActorWithForward
+namespace ActorsWithAskForwardWait
 {
     class Program
     {
         static void Main()
         {
             using var system = ActorSystem.Create($"{nameof(Program)}");
-            var targetActor = system.ActorOf<TargetActor>($"{nameof(TargetActor)}");
+            var targetActor = system.ActorOf<TargetActorWithWait>($"{nameof(TargetActorWithWait)}");
             var forwardActor = system.ActorOf(Props.Create(typeof(ActorWithForward), targetActor), $"{nameof(ActorWithForward)}");
 
             var resultTask = forwardActor.Ask("Evgeny");
@@ -29,13 +30,17 @@ namespace ActorWithForward
         }
     }
 
-    class TargetActor : ReceiveActor
+    class TargetActorWithWait : ReceiveActor
     {
-        public TargetActor()
+        public TargetActorWithWait()
         {
             Receive<string>(msg =>
             {
-                Sender.Tell($"{msg}!");
+                Task.Factory.StartNew(new Action<object>((sender) =>
+                {
+                    Task.Delay(1000).GetAwaiter().GetResult();
+                    (sender as IActorRef).Tell(msg);
+                }), Sender);
             });
         }
     }
