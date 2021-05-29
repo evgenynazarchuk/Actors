@@ -18,12 +18,6 @@ namespace ActorWithAsk
         }
     }
 
-
-    class DoWork
-    {
-        public DoWork() { }
-    }
-
     class ActorWithAsk : ReceiveActor
     {
         public ActorWithAsk()
