@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorWithException", "Actor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorWithRoundRobinPool", "ActorWithRoundRobinPool\ActorWithRoundRobinPool.csproj", "{9DFDA682-F257-4C5C-8E21-2D9891C2B875}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoundRobinPoolWIthException", "UntypedActor\RoundRobinPoolWIthException.csproj", "{9894252C-2D1F-4407-81D4-CE0DA9F8486D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorWithRoundRobinException", "UntypedActor\ActorWithRoundRobinException.csproj", "{9894252C-2D1F-4407-81D4-CE0DA9F8486D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
-﻿using System;
-using Akka.Actor;
-using System.Threading.Tasks;
+﻿using Akka.Actor;
 using Akka.Routing;
+using System;
+using System.Threading.Tasks;
 
 namespace ActorWithRoundRobinPool
 {

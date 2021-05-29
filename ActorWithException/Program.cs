@@ -1,6 +1,5 @@
 ﻿using Akka.Actor;
 using System;
-using Akka.Pattern;
 
 namespace ActorWithException
 {
