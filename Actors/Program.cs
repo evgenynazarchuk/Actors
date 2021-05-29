@@ -10,7 +10,7 @@ namespace Actors
         static void Main()
         {
             var stopWatch = new Stopwatch();
-            var system = ActorSystem.Create("my-system");
+            using var system = ActorSystem.Create("my-system");
             var actor = system.ActorOf<MessageActor>("my-actor");
 
             stopWatch.Start();

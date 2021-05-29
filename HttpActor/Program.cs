@@ -18,7 +18,7 @@ namespace HttpActor
             var httprequestMesage2 = new HttpRequestMessage() { RequestUri = request };
             var httprequestMesage3 = new HttpRequestMessage() { RequestUri = request };
 
-            var system = ActorSystem.Create("http-system");
+            using var system = ActorSystem.Create("http-system");
             var httpclient = system.ActorOf<HttpActor>("httpclient");
 
             httpclient.Tell(httprequestMesage1);
