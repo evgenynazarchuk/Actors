@@ -58,7 +58,8 @@ namespace HttpActor
 
     class HttpRequestMessageBuilder
     {
-        public string RequestUri;
+        private string _requestUri;
+        private string _content = string.Empty; // Empty is required if content is null
 
         public HttpRequestMessageBuilder()
         {
@@ -66,7 +67,13 @@ namespace HttpActor
 
         public HttpRequestMessageBuilder UseRequest(string requestUri)
         {
-            RequestUri = requestUri;
+            _requestUri = requestUri;
+            return this;
+        }
+
+        public HttpRequestMessageBuilder UseContent(string content)
+        {
+            _content = content;
             return this;
         }
 
@@ -74,7 +81,8 @@ namespace HttpActor
         {
             return new HttpRequestMessage()
             {
-                RequestUri = new Uri(this.RequestUri, UriKind.Relative)
+                RequestUri = new Uri(this._requestUri, UriKind.Relative),
+                Content = new StringContent(_content)
             };
         }
     }
