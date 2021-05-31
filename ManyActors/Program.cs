@@ -29,22 +29,34 @@ namespace ManyActors
             //.WithDispatcher("akka.io.pinned-dispatcher");
             var requestActor = actorSystem.ActorOf(requestProps, $"{nameof(RequestActor)}");
 
+            //var userProps = UserActor.CreateProps(requestActor)
+            //    .WithRouter(new RoundRobinPool(Configuration.UserActorCount));
             var userProps = UserActor.CreateProps(requestActor)
-                .WithRouter(new RoundRobinPool(Configuration.UserActorCount));
+                .WithRouter(new BroadcastPool(Configuration.UserActorCount));
             //var userProps = UserActor.CreateProps(requestActor);
             var userActor = actorSystem.ActorOf(userProps, $"{nameof(UserActor)}");
 
             Stopwatch watch = new();
 
-            //
-            watch.Start();
-            for (int j = 0; j < Configuration.UserActorCount; j++)
+            // roundrobin
+            //watch.Start();
+            //for (int j = 0; j < Configuration.UserActorCount; j++)
+            //{
+            //    userActor.Tell(new StartInvoke());
+            //}
+            //watch.Stop();
+            //Console.WriteLine($"Tell time: {watch.ElapsedMilliseconds} ms");
+            //watch.Restart();
+
+            // broadcast
+            for (int i = 0; i < 5; i++)
             {
+                watch.Start();
                 userActor.Tell(new StartInvoke());
+                watch.Stop();
+                Console.WriteLine($"Tell time: {watch.ElapsedMilliseconds} ms");
+                watch.Restart();
             }
-            watch.Stop();
-            Console.WriteLine($"Tell time: {watch.ElapsedMilliseconds} ms");
-            watch.Restart();
 
             Console.ReadKey();
         }
