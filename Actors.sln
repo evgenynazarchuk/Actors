@@ -23,7 +23,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorWithRoundRobinPool", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorWithRoundRobinException", "UntypedActor\ActorWithRoundRobinException.csproj", "{9894252C-2D1F-4407-81D4-CE0DA9F8486D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorWithStatus", "ActorWithStatus\ActorWithStatus.csproj", "{A856CDF1-B33F-4623-B0F1-C65C95B09DC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorWithStatus", "ActorWithStatus\ActorWithStatus.csproj", "{A856CDF1-B33F-4623-B0F1-C65C95B09DC1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManyTaskActors", "ManyTaskActors\ManyTaskActors.csproj", "{98DA733E-7C66-46C9-941F-1E374D618110}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManyActors", "ManyActors\ManyActors.csproj", "{E2D3FC14-902A-4879-AEF9-6D4C08F9EA9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{A856CDF1-B33F-4623-B0F1-C65C95B09DC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A856CDF1-B33F-4623-B0F1-C65C95B09DC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A856CDF1-B33F-4623-B0F1-C65C95B09DC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98DA733E-7C66-46C9-941F-1E374D618110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98DA733E-7C66-46C9-941F-1E374D618110}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98DA733E-7C66-46C9-941F-1E374D618110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98DA733E-7C66-46C9-941F-1E374D618110}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2D3FC14-902A-4879-AEF9-6D4C08F9EA9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2D3FC14-902A-4879-AEF9-6D4C08F9EA9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2D3FC14-902A-4879-AEF9-6D4C08F9EA9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2D3FC14-902A-4879-AEF9-6D4C08F9EA9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

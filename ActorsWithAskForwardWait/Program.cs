@@ -36,9 +36,9 @@ namespace ActorsWithAskForwardWait
         {
             Receive<string>(msg =>
             {
-                Task.Run(() =>
+                Task.Run(async () =>
                 {
-                    Task.Delay(1000).GetAwaiter().GetResult();
+                    await Task.Delay(1000);
                     return $"{msg}!";
                 }).PipeTo(Sender);
             });

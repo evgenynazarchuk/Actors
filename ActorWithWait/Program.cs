@@ -1,5 +1,6 @@
 ﻿using Akka.Actor;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ActorWithWait
@@ -11,11 +12,17 @@ namespace ActorWithWait
             var actorSystem = ActorSystem.Create($"{nameof(Program)}");
             var actor = actorSystem.ActorOf<ActorWithWait>($"{nameof(ActorWithWait)}");
 
-            actor.Tell(new DoWork());
-            actor.Tell(new DoWork());
-            actor.Tell(new DoWork());
-            actor.Tell(new DoWork());
-            actor.Tell(new DoWork());
+            List<Task<string>> tasks = new();
+            for (int i = 0; i < 100; i++)
+            {
+                tasks.Add(actor.Ask<string>(new DoWork()));
+            }
+            Task.WaitAll(tasks.ToArray());
+
+            foreach (var task in tasks)
+            {
+                Console.WriteLine(task.Result);
+            }
 
             Console.ReadKey();
         }
@@ -34,17 +41,11 @@ namespace ActorWithWait
         {
             Receive<DoWork>(_ =>
             {
-                Task.Run(() =>
+                Task.Run(async () =>
                 {
-                    // и это никого не блокирует!
-                    Task.Delay(5000).GetAwaiter().GetResult();
+                    await Task.Delay(5000);
                     return "Hello world";
-                }).PipeTo(Self);
-            });
-
-            Receive<string>(message =>
-            {
-                Console.WriteLine(message);
+                }).PipeTo(Sender);
             });
         }
     }

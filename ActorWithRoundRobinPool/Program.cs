@@ -11,16 +11,15 @@ namespace ActorWithRoundRobinPool
         {
             using var actorSystem = ActorSystem.Create($"{nameof(Program)}");
             var actor = actorSystem.ActorOf(
-                Props
+                props: Props
                 .Create<SlowlyActor>()
-                .WithRouter(new RoundRobinPool(2)
-                ), name: $"{nameof(SlowlyActor)}");
+                .WithRouter(new RoundRobinPool(2)),
+                name: $"{nameof(SlowlyActor)}");
 
-            actor.Tell(new DoWork());
-            actor.Tell(new DoWork());
-            actor.Tell(new DoWork());
-            actor.Tell(new DoWork());
-            actor.Tell(new DoWork());
+            for (int i = 0; i < 5; i++)
+            {
+                actor.Tell(new DoWork());
+            }
 
             Console.ReadKey();
         }
@@ -30,9 +29,9 @@ namespace ActorWithRoundRobinPool
     {
         public SlowlyActor()
         {
-            Receive<DoWork>(_ =>
+            Receive<DoWork>(async _ =>
             {
-                Task.Delay(3000).Wait();
+                await Task.Delay(3000);
                 Console.WriteLine("Helo world");
             });
         }

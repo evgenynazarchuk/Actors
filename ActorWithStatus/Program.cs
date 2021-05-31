@@ -1,6 +1,5 @@
-﻿using System;
-using Akka;
-using Akka.Actor;
+﻿using Akka.Actor;
+using System;
 
 namespace ActorWithStatus
 {
