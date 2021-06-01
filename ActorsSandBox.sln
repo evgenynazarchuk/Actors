@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManyTaskActors", "ManyTaskA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManyActors", "ManyActors\ManyActors.csproj", "{E2D3FC14-902A-4879-AEF9-6D4C08F9EA9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResizeActorsPool", "ResizeActorsPool\ResizeActorsPool.csproj", "{EAB006B3-1769-4EB3-83BB-C2AD3910EF7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResizeActorsPool", "ResizeActorsPool\ResizeActorsPool.csproj", "{EAB006B3-1769-4EB3-83BB-C2AD3910EF7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
