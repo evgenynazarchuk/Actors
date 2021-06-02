@@ -31,6 +31,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManyActors", "ManyActors\Ma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResizeActorsPool", "ResizeActorsPool\ResizeActorsPool.csproj", "{EAB006B3-1769-4EB3-83BB-C2AD3910EF7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreatedTimeActor", "CreatedTimeActor\CreatedTimeActor.csproj", "{CDD0BCCC-8B62-49C2-A01F-DE9ABE9D5DDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileWriteActor", "FileWriteActor\FileWriteActor.csproj", "{F34649AC-ABBE-41B7-AD0F-3F85524C34D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +97,14 @@ Global
 		{EAB006B3-1769-4EB3-83BB-C2AD3910EF7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAB006B3-1769-4EB3-83BB-C2AD3910EF7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAB006B3-1769-4EB3-83BB-C2AD3910EF7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDD0BCCC-8B62-49C2-A01F-DE9ABE9D5DDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDD0BCCC-8B62-49C2-A01F-DE9ABE9D5DDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDD0BCCC-8B62-49C2-A01F-DE9ABE9D5DDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDD0BCCC-8B62-49C2-A01F-DE9ABE9D5DDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F34649AC-ABBE-41B7-AD0F-3F85524C34D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F34649AC-ABBE-41B7-AD0F-3F85524C34D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F34649AC-ABBE-41B7-AD0F-3F85524C34D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F34649AC-ABBE-41B7-AD0F-3F85524C34D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
